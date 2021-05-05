@@ -49,7 +49,7 @@ int main() {
     outFile << "937095391" << endl; 
     outFile << "267022988" << endl; 
     outFile << "Marlon Brando" << endl; 
-	outFile << "987125432" << endl; 
+    outFile << "987125432" << endl; 
     outFile << "M" << endl; 
     outFile << "1961/04/13" << endl; 
     outFile << "64.27" << endl; 
@@ -127,14 +127,14 @@ int main() {
     outFile << "66.67" << endl; 
     outFile << "115.85" << endl; 
     outFile << "234343109" << endl; 
-    outFile << "367998174" << endl;
+    outFile << "125325486" << endl;
     outFile << "LeBron James" << endl; 
     outFile << "748393703" << endl; 
     outFile <<  "M" << endl; 
     outFile << "1984/12/30" << endl; 
     outFile << "81.11" << endl; 
     outFile << "250.25" << endl; 
-    outFile << "601460043" << endl; 
+    outFile << "432567812" << endl; 
     outFile << "664392428" << endl;
     outFile << "Kevin Hart" << endl; 
     outFile << "574893742" << endl; 
@@ -150,7 +150,7 @@ int main() {
     outFile << "1995/11/03" << endl; 
     outFile << "70.27" << endl; 
     outFile << "119.51" << endl; 
-    outFile << "312423856" << endl; 
+    outFile << "368356840" << endl; 
     outFile << "112167761" << endl;
     outFile << "Hinata Hyuga" << endl; 
     outFile << "848393837" << endl; 
@@ -159,14 +159,14 @@ int main() {
     outFile << "62.99" << endl; 
     outFile << "99.28" << endl; 
     outFile << "425154929" << endl; 
-    outFile << "753948692" << endl;
+    outFile << "832195421" << endl;
     outFile << "Kate Upton" << endl; 
     outFile << "273849367" << endl; 
     outFile <<  "F" << endl; 
     outFile << "1992/06/10" << endl; 
     outFile << "70.35" << endl; 
     outFile << "136.89" << endl; 
-    outFile << "209483112" << endl; 
+    outFile << "546132876" << endl; 
     outFile << "801381088" << endl;
 
 
