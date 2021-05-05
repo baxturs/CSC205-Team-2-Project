@@ -1,0 +1,241 @@
+
+#include <iostream>
+#include <fstream>
+#include <math.h>
+using namespace std;
+
+int main() {
+    
+    ofstream outFile("moviestars.txt");
+
+    outFile << "Al Pacino" << endl; 
+    outFile << "432567812" << endl; 
+    outFile << "M" << endl; 
+    outFile << "1953/10/21" << endl; 
+    outFile << "69.25" << endl; 
+    outFile << "174.23" << endl; 
+    outFile << "553160574" << endl; 
+    outFile << "804661781" << endl; 
+    outFile << "Robert DeNiro" << endl; 
+    outFile << "546132876" << endl; 
+    outFile << "M" << endl; 
+    outFile << "1958/08/30" << endl; 
+    outFile << "69.57" << endl; 
+    outFile << "186.84" << endl; 
+    outFile << "553160574" << endl; 
+    outFile << "804661781" << endl; 
+    outFile << "Sandra Bullock" << endl; 
+    outFile << "578356840" << endl; 
+    outFile << "F" << endl; 
+    outFile << "1964/05/07" << endl; 
+    outFile << "62.77" << endl; 
+    outFile << "153.62" << endl; 
+    outFile << "832195421" << endl; 
+    outFile << "373084311" << endl; 
+    outFile << "Bob Wellington" << endl; 
+    outFile << "432211234" << endl; 
+    outFile << "M" << endl; 
+    outFile << "1931/11/15" << endl; 
+    outFile << "76.42" << endl; 
+    outFile << "140.24" << endl; 
+    outFile << "891264225" << endl; 
+    outFile << "148048592" << endl; 
+    outFile << "Angela Basset" << endl; 
+    outFile << "100325486" << endl; 
+    outFile << "F" << endl; 
+    outFile << "1985/01/30" << endl; 
+    outFile << "56.57" << endl; 
+    outFile << "101.81" << endl; 
+    outFile << "937095391" << endl; 
+    outFile << "267022988" << endl; 
+    outFile << "Marlon Brando" << endl; 
+	outFile << "987125432" << endl; 
+    outFile << "M" << endl; 
+    outFile << "1961/04/13" << endl; 
+    outFile << "64.27" << endl; 
+    outFile << "234.78" << endl; 
+    outFile << "757645546" << endl; 
+    outFile << "626131841" << endl; 
+    outFile << "Robert Carlyle" << endl; 
+    outFile << "576532876" << endl; 
+    outFile << "M" << endl; 
+    outFile << "1958/08/30" << endl; 
+    outFile << "69.57" << endl; 
+    outFile << "186.84" << endl; 
+    outFile << "821044919" << endl; 
+    outFile << "796930607" << endl; 
+    outFile << "Alec Guinness" << endl; 
+    outFile << "368356840" << endl; 
+    outFile << "F" << endl; 
+    outFile << "1964/05/07" << endl; 
+    outFile << "62.77" << endl; 
+    outFile << "153.62" << endl; 
+    outFile << "832195421" << endl; 
+    outFile << "373084311" << endl; 
+    outFile << "Mike Myers" << endl; 
+    outFile << "499211234" << endl; 
+    outFile << "M" << endl; 
+    outFile << "1931/11/15" << endl; 
+    outFile << "76.42" << endl; 
+    outFile << "140.24" << endl; 
+    outFile << "911426322" << endl; 
+    outFile << "134431464" << endl; 
+    outFile << "Emma Thompson" << endl; 
+    outFile << "125325486" << endl; 
+    outFile <<  "F" << endl; 
+    outFile << "1985/01/30" << endl; 
+    outFile << "56.57" << endl; 
+    outFile << "101.81" << endl; 
+    outFile << "832195421" << endl; 
+    outFile << "373084311" << endl;
+    outFile << "Sai Dubai" << endl; 
+    outFile << "894302937" << endl; 
+    outFile <<  "M" << endl; 
+    outFile << "1978/03/24" << endl; 
+    outFile << "59.36" << endl; 
+    outFile << "111.87" << endl; 
+    outFile << "707634663" << endl; 
+    outFile << "940633524" << endl;
+    outFile << "Naruto Uzamaki" << endl; 
+    outFile << "678463925" << endl; 
+    outFile <<  "M" << endl; 
+    outFile << "2000/10/10" << endl; 
+    outFile << "50.94" << endl; 
+    outFile << "166.42" << endl; 
+    outFile << "892046051" << endl; 
+    outFile << "333340024" << endl;  
+    outFile << "Killua Zoldyck" << endl; 
+    outFile << "372483837" << endl; 
+    outFile <<  "M" << endl; 
+    outFile << "1999/07/07" << endl; 
+    outFile << "62.89" << endl; 
+    outFile << "107.83" << endl; 
+    outFile << "234343109" << endl; 
+    outFile << "367998174" << endl;
+    outFile << "Gon Freecss" << endl; 
+    outFile << "452373281" << endl; 
+    outFile <<  "M" << endl; 
+    outFile << "1998/05/05" << endl; 
+    outFile << "61.25" << endl; 
+    outFile << "108.35" << endl; 
+    outFile << "234343109" << endl; 
+    outFile << "367998174" << endl;
+    outFile << "Sasuke Uchiha" << endl; 
+    outFile << "896454231" << endl; 
+    outFile <<  "M" << endl; 
+    outFile << "1999/07/23" << endl; 
+    outFile << "66.67" << endl; 
+    outFile << "115.85" << endl; 
+    outFile << "234343109" << endl; 
+    outFile << "367998174" << endl;
+    outFile << "LeBron James" << endl; 
+    outFile << "748393703" << endl; 
+    outFile <<  "M" << endl; 
+    outFile << "1984/12/30" << endl; 
+    outFile << "81.11" << endl; 
+    outFile << "250.25" << endl; 
+    outFile << "601460043" << endl; 
+    outFile << "664392428" << endl;
+    outFile << "Kevin Hart" << endl; 
+    outFile << "574893742" << endl; 
+    outFile <<  "M" << endl; 
+    outFile << "1979/07/06" << endl; 
+    outFile << "63.12" << endl; 
+    outFile << "141.87" << endl; 
+    outFile << "209483112" << endl; 
+    outFile << "801381088" << endl;
+    outFile << "Kendall Jenner" << endl; 
+    outFile << "743723982" << endl; 
+    outFile <<  "F" << endl; 
+    outFile << "1995/11/03" << endl; 
+    outFile << "70.27" << endl; 
+    outFile << "119.51" << endl; 
+    outFile << "312423856" << endl; 
+    outFile << "112167761" << endl;
+    outFile << "Hinata Hyuga" << endl; 
+    outFile << "848393837" << endl; 
+    outFile <<  "F" << endl; 
+    outFile << "2001/12/27" << endl; 
+    outFile << "62.99" << endl; 
+    outFile << "99.28" << endl; 
+    outFile << "425154929" << endl; 
+    outFile << "753948692" << endl;
+    outFile << "Kate Upton" << endl; 
+    outFile << "273849367" << endl; 
+    outFile <<  "F" << endl; 
+    outFile << "1992/06/10" << endl; 
+    outFile << "70.35" << endl; 
+    outFile << "136.89" << endl; 
+    outFile << "209483112" << endl; 
+    outFile << "801381088" << endl;
+
+
+
+    outFile.close();
+
+
+    return 0;
+}
+
+
+notmoviestars.txt:
+
+#include <iostream>
+#include <fstream>
+#include <math.h>
+using namespace std;
+
+int main() {
+    
+    ofstream outFile("notmoviestars.txt");
+
+    outFile << "Daddy Mans" << endl; 
+    outFile << "951567522" << endl; 
+    outFile << "M" << endl; 
+    outFile << "1965/10/21" << endl; 
+    outFile << "69.25" << endl; 
+    outFile << "174.23" << endl; 
+    outFile << "285277951" << endl; 
+    outFile << "325476024" << endl; 
+    outFile << "Baby Boy" << endl; 
+    outFile << "956239532" << endl; 
+    outFile << "M" << endl; 
+    outFile << "1985/08/30" << endl; 
+    outFile << "69.57" << endl; 
+    outFile << "186.84" << endl; 
+    outFile << "281287116" << endl; 
+    outFile << "975539892" << endl; 
+    outFile << "Deez Nuts Guy" << endl; 
+    outFile << "944231978" << endl; 
+    outFile << "M" << endl; 
+    outFile << "1964/05/07" << endl; 
+    outFile << "62.77" << endl; 
+    outFile << "153.62" << endl; 
+    outFile << "943885074" << endl; 
+    outFile << "429097238" << endl; 
+    outFile << "Lord Farquad" << endl; 
+    outFile << "898450497" << endl; 
+    outFile << "M" << endl; 
+    outFile << "1931/11/15" << endl; 
+    outFile << "76.42" << endl; 
+    outFile << "140.24" << endl; 
+    outFile << "253096652" << endl; 
+    outFile << "167623535" << endl; 
+    outFile << "Giant Shrek" << endl; 
+    outFile << "506338211" << endl; 
+    outFile << "M" << endl; 
+    outFile << "1985/01/30" << endl; 
+    outFile << "56.57" << endl; 
+    outFile << "101.81" << endl; 
+    outFile << "127878791" << endl; 
+    outFile << "101027684" << endl; 
+    
+    
+
+
+
+    outFile.close();
+
+
+    return 0;
+}

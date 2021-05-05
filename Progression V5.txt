@@ -1,0 +1,706 @@
+/******************************************************************************
+
+Team 2  Final Project  29 April 2021
+Richard Dinsmore
+
+*******************************************************************************/
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <array>
+#include <iomanip>
+using namespace std;
+
+struct person{      // define the UDT
+
+string pName;
+long SSN; 
+
+char gender; 
+string DOB;
+
+float height; 
+float weight;
+
+long fSSN;
+long mSSN;
+
+
+person* next;
+};
+
+int get_numPersons(string); 
+void populate_persons(person*, string, int); 
+void do_sort(person*);
+void remove_person(person*);
+void add_person(person*);
+void add_bulk(person*, string);
+void edit_person(person*);
+//void old_people(person*, string, int);
+//void thicc_people(person*, int);
+//void boys_and_girls(person*, int);
+//void mommy_and_daddy(person*, int);
+//void child_finder(person*, int);
+//void sibling_finder(person*, int);
+
+
+/*void sibling_finder(person* head, int pcount){
+    
+    person* tmp[pcount]; 
+     
+    for (int i = 0; i < pcount; i++){
+        tmp[i] = myFavMovieStar;
+        myFavMovieStar++;
+    }
+    
+    long userInp;
+    long fatherhood = 0;
+    long motherhood = 0;
+    
+    cout << "Enter a SSN to search for in the list: ";
+    cin >> userInp;
+    cout << endl;
+    
+    
+        for(int i = 0; i < pcount; i++){
+            if(tmp[i]->SSN == userInp){
+               fatherhood = tmp[i]->fSSN;
+            }
+        }
+        
+        for(int i = 0; i < pcount; i++){
+            if(tmp[i]->SSN == userInp){
+               motherhood = tmp[i]->mSSN; 
+            }
+        }
+    
+        for(int i = 0; i < pcount; i++){
+            if(tmp[i]->mSSN == motherhood){
+               cout << "Maternal sibling: "<< tmp[i]->pName <<  endl;
+            }
+        }
+    
+        for(int i = 0; i < pcount; i++){
+            if(tmp[i]->fSSN == fatherhood){
+               cout << "Paternal sibling: "<< tmp[i]->pName <<  endl;
+            }
+        }
+    
+        if(fatherhood == 0 && motherhood == 0){
+            cout << "No siblings found!" << endl;
+        }
+    
+    cout << endl; 
+ 
+    return;
+    
+}*/
+
+/*void child_finder(person* head, int pcount){
+    
+    person* tmp[pcount]; 
+     
+    for (int i = 0; i < pcount; i++){
+        tmp[i] = myFavMovieStar;
+        myFavMovieStar++;
+    }
+    
+    long userInp;
+    string personName;
+    string child_of_mother = "NULL";
+    string child_of_father = "NULL";
+    bool child1 = false;
+    bool child2 = false;
+    long personhood;
+
+    
+    cout << "Enter a SSN to search for in the list: ";
+    cin >> userInp;
+    cout << endl;
+    
+        for(int i = 0; i < pcount; i++){
+            if(tmp[i]->SSN == userInp){
+               personhood = tmp[i]->SSN;
+               personName = tmp[i]->pName;
+            }
+        }
+        
+        for(int i = 0; i < pcount; i++){
+            if(tmp[i]->mSSN == personhood){
+               child_of_mother = tmp[i]->pName;
+               child1 = true;
+               cout << tmp[i]->pName << " is a child of " << personName << endl;
+            }
+        }
+        
+
+    
+        for(int i = 0; i < pcount; i++){
+            if(tmp[i]->fSSN == personhood){
+               child_of_father = tmp[i]->pName;
+               child2 = true;
+               cout << tmp[i]->pName << " is a child of " << personName << endl;
+            }
+        }
+    
+        if(child1 == false && child2 == false){
+            cout << "No children found!" << endl;
+        }
+    
+
+    cout << endl; 
+ 
+    return;
+}*/
+
+/*void mommy_and_daddy(person* head, int pcount){
+    
+    person* tmp[pcount]; 
+     
+    for (int i = 0; i < pcount; i++){
+        tmp[i] = myFavMovieStar;
+        myFavMovieStar++;
+    }
+    
+    long userInp;
+    long fatherhood = 0;
+    long motherhood = 0;
+    
+    cout << "Enter a SSN to search for in the list: ";
+    cin >> userInp;
+    
+    
+        for(int i = 0; i < pcount; i++){
+            if(tmp[i]->SSN == userInp){
+               fatherhood = tmp[i]->fSSN;
+            }
+        }
+        
+        for(int i = 0; i < pcount; i++){
+            if(tmp[i]->SSN == userInp){
+               motherhood = tmp[i]->mSSN; 
+            }
+        }
+    
+        for(int i = 0; i < pcount; i++){
+            if(tmp[i]->SSN == motherhood){
+               cout << "Mother: "<< tmp[i]->pName <<  endl;
+            }
+        }
+        
+        if(motherhood == 0){
+            cout << "No Mother found!" << endl;
+        }
+    
+        for(int i = 0; i < pcount; i++){
+            if(tmp[i]->SSN == fatherhood){
+               cout << "Father: "<< tmp[i]->pName <<  endl;
+            }
+        }
+    
+        if(fatherhood == 0){
+            cout << "No Father found!" << endl;
+        }
+    
+    cout << endl; 
+ 
+    return;
+}*/
+
+/*void boys_and_girls(person* head, int pcount){
+    
+    person* tmp[pcount]; 
+     
+    for (int i = 0; i < pcount; i++){
+        tmp[i] = myFavMovieStar;
+        myFavMovieStar++;
+    }
+    
+    float maleCount = 0;
+    float femaleCount = 0;
+    
+    
+    for (int i = 0; i < pcount; i++){
+        if(tmp[i]->gender == 'M'){
+            maleCount++;
+        }
+        //cout << tmp[i]->gender << endl;
+        else if(tmp[i]->gender == 'F'){
+            femaleCount++;
+        }
+    }
+    
+    cout << "********************************************************************" << endl;
+    cout << "Count of males: " << maleCount << endl;
+    cout << "Count of females: " << femaleCount << endl;
+    cout << "Ratio of females per thousand males: " << ((femaleCount / maleCount) * 1000) << endl;
+    cout << "********************************************************************" << endl;    
+
+    
+    return;
+    
+}*/
+
+/*void thicc_people(person* head, int pcount){
+    
+    
+    int fat = 27;
+    //int bodyMassIndex = (tmp[i]->weight / (tmp[i]->height * tmp[i]->height))
+    
+    person* tmp[pcount]; 
+     
+    for (int i = 0; i < pcount; i++){
+        tmp[i] = myFavMovieStar;
+        myFavMovieStar++;
+    }
+    
+    person* swapper;
+    
+     for(int i = 0; i < pcount; i++){
+        for(int j = 1; j < pcount; j++){
+            if(((tmp[j]->weight / (tmp[j]->height * tmp[j]->height)) * 703) > ((tmp[j - 1]->weight / (tmp[j - 1]->height * tmp[j - 1]->height)) * 703)) {
+                swapper = tmp[j];
+                tmp[j] = tmp[j - 1];
+                tmp[j - 1] = swapper; 
+            }
+        }
+    }
+    //Done sorting persons by SSN 
+    
+    for (int i = 0; i < pcount; i++){
+        if( ( (tmp[i]->weight / (tmp[i]->height * tmp[i]->height)) * 703) > fat){
+                cout << tmp[i]->pName << " | BMI: " << ((tmp[i]->weight / (tmp[i]->height * tmp[i]->height)) * 703) << " | " << tmp[i]->SSN << " | " << tmp[i]->gender << " | " << tmp[i]->DOB << " | " 
+                << tmp[i]->height << " | " << tmp[i]->weight << " | " << tmp[i]->fSSN << " | "  << tmp[i]->mSSN << " | " <<  endl ; 
+        }
+    }    
+    cout << endl; 
+   
+    //Done printing persons by SSN
+    return;
+}*/
+
+void add_person(person* prevPerson){
+    
+    string userpName;
+    long userSSN;
+    char userGender;
+    string userDOB;
+    float userHeight;
+    float userWeight;
+    long userfSSN;
+    long usermSSN;
+    
+    if (prevPerson == NULL) 
+    { 
+        cout<<"the given previous node cannot be NULL"; 
+        return; 
+    }
+    
+    /* 1. allocate node */
+    person* newPerson = new person(); 
+        
+    /* 2. put in the data */
+    cout << "Please enter a new person's name: " << endl;
+    getline(cin >> ws, userpName);
+        newPerson->pName = userpName;
+    cout << "Please enter a new person's SSN: " << endl;
+    cin >> userSSN;
+        newPerson->SSN = userSSN;
+    cout << "Please enter a new person's gender: " << endl;
+    cin >> userGender;
+        newPerson->gender = userGender;
+    cout << "Please enter a new person's DOB (yyyy/mm/dd): " << endl;
+    cin >> userDOB;
+        newPerson->DOB = userDOB;
+    cout << "Please enter a new person's height (in inches): " << endl;
+    cin >> userHeight;
+        newPerson->height = userHeight;
+    cout << "Please enter a new person's weight (in pounds): " << endl;
+    cin >> userWeight;
+        newPerson->weight = userWeight;
+    cout << "Please enter a new person's father's SSN: " << endl;
+    cin >> userfSSN;
+        newPerson->fSSN = userfSSN;
+    cout << "Please enter a new person's mother's SSN: " << endl;
+    cin >> usermSSN;
+        newPerson->mSSN = usermSSN;
+    
+    
+    /* 3. Make next of new node as next of prevPerson */
+    newPerson->next = prevPerson->next; 
+  
+    /* 4. move the next of prev_node as new_node */
+    prevPerson->next = newPerson; 
+    
+    return;
+    
+}
+
+void add_bulk(person* prevPerson, string newfName){
+    
+    person* newPerson = new person();
+    string fLine;
+    
+    ifstream fMovStar;
+    fMovStar.open(newfName);
+    
+    while (!fMovStar.eof()) {
+        
+        getline( fMovStar, fLine); 
+        newPerson->pName = fLine;
+        getline( fMovStar, fLine); 
+        newPerson->SSN = stol(fLine);
+        getline( fMovStar, fLine); 
+        newPerson->gender = fLine[0];
+        getline( fMovStar, fLine); 
+        newPerson->DOB = fLine;
+        getline( fMovStar, fLine); 
+        newPerson->height = stof(fLine);
+        getline( fMovStar, fLine); 
+        newPerson->weight = stof(fLine);
+        getline( fMovStar, fLine); 
+        newPerson->fSSN = stol(fLine);
+        getline( fMovStar, fLine); 
+        newPerson->mSSN = stol(fLine);
+        
+        /* 3. Make next of newPerson as next of prevPerson */
+        newPerson->next = prevPerson->next; 
+  
+    /* 4. move the next of prevPerson as newPerson */
+        prevPerson->next = newPerson; 
+    }
+    
+    fMovStar.close();
+    
+
+    cout << endl;
+    return; 
+}
+
+void remove_person(person* *head){
+    
+    person* temp = *head;
+    person* prev = NULL;
+    long userInp = 0;
+    
+    
+    cout << "Please enter a SSN to edit a person: " << endl;
+    cin >> userInp;
+    
+    // If head node itself holds
+    // the key to be deleted
+    if (temp != NULL && temp->SSN == userInp)
+    {
+        *head = temp->next; // Changed head
+        delete temp;            // free old head
+        return;
+    }
+ 
+    // Else Search for the key to be deleted,
+    // keep track of the previous node as we
+    // need to change 'prev->next' */
+      else
+    {
+    while (temp != NULL && temp->SSN != userInp)
+    {
+        prev = temp;
+        temp = temp->next;
+    }
+ 
+    // If key was not present in linked list
+    if (temp == NULL)
+        return;
+ 
+    // Unlink the node from linked list
+    prev->next = temp->next;
+ 
+    // Free memory
+    delete temp;
+    }
+}
+
+void edit_person(person* head){
+    
+    string userpName;
+    long userSSN;
+    char userGender;
+    string userDOB;
+    float userHeight;
+    float userWeight;
+    long userfSSN;
+    long usermSSN;
+    long userInp = 0;
+    
+    person* current = head;
+    
+    cout << "Please enter a SSN to edit a person: " << endl;
+    cin >> userInp;
+    
+    while (current != NULL){
+        while(current->SSN == userInp){
+            
+            /* 2. put in the data */
+            cout << "Please enter a new person's name: " << endl;
+            getline(cin >> ws, userpName);
+                current->pName = userpName;
+            cout << "Please enter a new person's SSN: " << endl;
+            cin >> userSSN;
+                current->SSN = userSSN;
+            cout << "Please enter a new person's gender: " << endl;
+            cin >> userGender;
+                current->gender = userGender;
+            cout << "Please enter a new person's DOB (yyyy/mm/dd): " << endl;
+            cin >> userDOB;
+                current->DOB = userDOB;
+            cout << "Please enter a new person's height (in inches): " << endl;
+            cin >> userHeight;
+                current->height = userHeight;
+            cout << "Please enter a new person's weight (in pounds): " << endl;
+            cin >> userWeight;
+                current->weight = userWeight;
+            cout << "Please enter a new person's father's SSN: " << endl;
+            cin >> userfSSN;
+                current->fSSN = userfSSN;
+            cout << "Please enter a new person's mother's SSN: " << endl;
+            cin >> usermSSN;
+                current->mSSN = usermSSN;
+        }
+        current = current->next;
+    }
+    current = head;    
+    return;    
+}
+
+/*void old_people(person* head, string fName, int pcount){
+    
+    person* tmp[pcount];
+    int old_person_age = 1956;
+     
+    for (int i = 0; i < pcount; i++){
+        tmp[i] = myFavMovieStar;
+        myFavMovieStar++;
+    }
+    
+    person* swapper;
+    
+     for(int i = 0; i < pcount; i++){
+        for(int j = 1; j < pcount; j++){
+            if(tmp[j]->DOB.substr(0,4) > tmp[j - 1]->DOB.substr(0,4)){
+                swapper = tmp[j];
+                tmp[j] = tmp[j - 1];
+                tmp[j - 1] = swapper; 
+            }
+        }
+    }
+    //Done sorting persons by SSN 
+    cout << endl;
+    cout << setw(51) << "[Here is a collection of boomers]: " << endl;
+    cout << "********************************************************************" << endl;
+    
+    for (int i = 0; i < pcount; i++){
+        if(stoi(tmp[i]->DOB.substr(0,4)) < old_person_age){
+                cout << tmp[i]->pName << " | " << tmp[i]->SSN << " | " << tmp[i]->gender << " | " << tmp[i]->DOB << " | " 
+                    << tmp[i]->height << " | " << tmp[i]->weight << " | " << tmp[i]->fSSN << " | "  << tmp[i]->mSSN << " | " <<  endl ; 
+            }
+        }    
+    cout << "********************************************************************" << endl;
+    cout << endl;
+    //Done printing persons by SSN
+    
+    
+    
+}*/
+
+void populate_persons(person* head, string fName){ 
+    
+
+    
+     // independent person
+    head->next = NULL;
+    
+    person* current = head;
+    person* newPerson;
+    string fLine;
+    
+    ifstream fMovStar;
+    fMovStar.open(fName);
+    
+    while (!fMovStar.eof()) {
+        
+        getline( fMovStar, fLine); 
+        current->pName = fLine;
+        getline( fMovStar, fLine); 
+        current->SSN = stol(fLine);
+        getline( fMovStar, fLine); 
+        current->gender = fLine[0];
+        getline( fMovStar, fLine); 
+        current->DOB = fLine;
+        getline( fMovStar, fLine); 
+        current->height = stof(fLine);
+        getline( fMovStar, fLine); 
+        current->weight = stof(fLine);
+        getline( fMovStar, fLine); 
+        current->fSSN = stol(fLine);
+        getline( fMovStar, fLine); 
+        current->mSSN = stol(fLine);
+        
+        newPerson = new person;
+        current->next = newPerson; //linking
+        current = newPerson;
+    }
+    
+    fMovStar.close();
+    
+    current = head;
+    person* prevPerson;
+    while(current->next != NULL){
+        prevPerson = current;
+        current = current->next;
+    }
+    
+    prevPerson->next = NULL;
+    delete newPerson;
+    
+    current = head;
+    cout << endl;
+    return; 
+} 
+
+void do_sort(person* head){
+    
+    person* current = head; // pointer to iterate thru data
+    
+    if (current != NULL){
+        //cout << current->pName << endl;  //output data at current pointer 
+        current = current->next;        // and move to next pointer when != NULL    
+    }
+    
+    current = head;                     // reset the location of current back to head
+    cout << endl;
+    
+    person* index = NULL;
+    string temppName;
+    long tempSSN;
+    char tempGender;
+    string tempDOB;
+    float tempHeight;
+    float tempWeight;
+    long tempfSSN;
+    long tempmSSN;
+    
+    //classic bubble sort
+    while(current != NULL){
+        //node index will point to node next to current
+        index = current->next;
+        
+        while(index != NULL){
+            // if current node's data is greater than index's node data
+            // swap the data between them
+            if(current->SSN > index->SSN){
+                
+                temppName = current->pName;
+                tempSSN = current->SSN;
+                tempGender = current->gender;
+                tempDOB = current->DOB;
+                tempHeight = current->height;
+                tempWeight = current->weight;
+                tempfSSN = current->fSSN;
+                tempmSSN = current->mSSN;
+                
+                current->pName = index->pName;
+                current->SSN = index->SSN;
+                current->gender = index->gender;
+                current->DOB = index->DOB;
+                current->height = index->height;
+                current->weight = index->weight;
+                current->fSSN = index->fSSN;
+                current->mSSN = index->mSSN;
+                
+                index->pName = temppName;
+                index->SSN = tempSSN;
+                index->gender = tempGender;
+                index->DOB = tempDOB;
+                index->height = tempHeight;
+                index->weight = tempWeight;
+                index->fSSN = tempfSSN;
+                index->mSSN = tempmSSN;
+            }
+            index = index->next;
+        }
+        current = current->next;
+    }
+    current = head;
+    
+    while(current != NULL){
+        cout << current->pName << " | " << current->SSN << " | " << current->gender << " | " << current->DOB << " | " 
+             << current->height << " | " << current->weight << " | " << current->fSSN << " | "  << current->mSSN << " | " <<  endl ;
+        current = current->next;
+    }
+    
+    current = head;
+    cout << endl;
+    
+    return;
+    
+}
+
+int show_menu(){
+    
+    int usrOpt;
+    cout << "Please choose a menu option: " << endl; 
+    cout << "1. View a sorted list.  " << endl; 
+    cout << "2. Remove a member of the list. (Input SSN)  " << endl; 
+    cout << "3. Add a member to the list. (Supply new info) " << endl; 
+    cout << "4. Add bulk members to the list via File.(Supply File)" << endl;
+    cout << "5. Edit a person (Enter SSN of member & supply new info) ." << endl;
+    cout << "6. Display all persons eligible for social security (age 65 and older)." << endl;
+    cout << "7. Display all persons at high risk of cardiovascular disease (BMI 27 and higher)." << endl;
+    cout << "8. Display the male:female ratio of the population of the county (females per thousand males)." << endl;
+    cout << "9. Find the parents of a person (Input SSN of the person)." << endl;
+    cout << "10. Find all children of a person (Input SSN of the person)." << endl;
+    cout << "11. Find all siblings of a person (Input SSN of the person)." << endl;
+    cout << "12. Find all uncles, aunts, cousins, nephews and nieces of a person (Input SSN of the person)." << endl;
+    cout << "13. Exit" << endl;
+    cout << "Enter a selection 👌 👀 👌 :";
+ 
+    cin >> usrOpt; 
+    return usrOpt;
+}
+
+int main(){
+    
+    string fName = "moviestars.txt";
+    string newfName = "notmoviestars.txt";
+    
+    person* head = new person;
+    
+    populate_persons(head, fName);
+    
+    int usrOpt = 0;
+    usrOpt = show_menu();
+    
+    
+    while (usrOpt !=13){
+    
+    if (usrOpt==1)  { do_sort(head);}
+	if (usrOpt==2)  { remove_person(&head); do_sort(head);} 
+	if (usrOpt==3)  { add_person(head->next); do_sort(head);}
+	if (usrOpt==4)  { add_bulk(head->next, newfName); do_sort(head);}
+	if (usrOpt==5)  { edit_person(head); do_sort(head);}
+	//if (usrOpt==6)  { old_people(head, fName, pcount);} 
+	//if (usrOpt==7)  { thicc_people(head, pcount);}
+	//if (usrOpt==8)  { boys_and_girls(head, pcount);}
+	//if (usrOpt==9)  { mommy_and_daddy(head, pcount);}
+	//if (usrOpt==10) { child_finder(head, pcount);}
+	//if (usrOpt==11) { sibling_finder(head, pcount);}
+	if (usrOpt==12) {  }
+	
+	
+	
+	
+    usrOpt = show_menu();
+    
+    }
+	
+	return 0; 
+}
