@@ -36,21 +36,21 @@ void remove_person(person*);
 void add_person(person*);
 void add_bulk(person*, string);
 void edit_person(person*);
-//void old_people(person*, string, int);
-//void thicc_people(person*, int);
-//void boys_and_girls(person*, int);
-//void mommy_and_daddy(person*, int);
-//void child_finder(person*, int);
-//void sibling_finder(person*, int);
+void old_people(person*, string, int);
+void thicc_people(person*, int);
+void males_per_thousand_females(person*, int);
+void parent_finder(person*, int);
+void child_finder(person*, int);
+void sibling_finder(person*, int);
 
 
-/*void sibling_finder(person* head, int pcount){
+void sibling_finder(person* head, int pcount){
     
     person* tmp[pcount]; 
      
     for (int i = 0; i < pcount; i++){
-        tmp[i] = myFavMovieStar;
-        myFavMovieStar++;
+        tmp[i] = head;
+        head = head->next;
     }
     
     long userInp;
@@ -94,15 +94,15 @@ void edit_person(person*);
  
     return;
     
-}*/
+}
 
-/*void child_finder(person* head, int pcount){
+void child_finder(person* head, int pcount){
     
     person* tmp[pcount]; 
      
     for (int i = 0; i < pcount; i++){
-        tmp[i] = myFavMovieStar;
-        myFavMovieStar++;
+        tmp[i] = head;
+        head = head->next;
     }
     
     long userInp;
@@ -151,15 +151,15 @@ void edit_person(person*);
     cout << endl; 
  
     return;
-}*/
+}
 
-/*void mommy_and_daddy(person* head, int pcount){
+void parent_finder(person* head, int pcount){
     
     person* tmp[pcount]; 
      
     for (int i = 0; i < pcount; i++){
-        tmp[i] = myFavMovieStar;
-        myFavMovieStar++;
+        tmp[i] = head;
+        head = head->next;
     }
     
     long userInp;
@@ -205,15 +205,15 @@ void edit_person(person*);
     cout << endl; 
  
     return;
-}*/
+}
 
-/*void boys_and_girls(person* head, int pcount){
+void males_per_thousand_females(person* head, int pcount){
     
     person* tmp[pcount]; 
      
     for (int i = 0; i < pcount; i++){
-        tmp[i] = myFavMovieStar;
-        myFavMovieStar++;
+        tmp[i] = head;
+        head = head->next;
     }
     
     float maleCount = 0;
@@ -239,9 +239,9 @@ void edit_person(person*);
     
     return;
     
-}*/
+}
 
-/*void thicc_people(person* head, int pcount){
+void thicc_people(person* head, int pcount){
     
     
     int fat = 27;
@@ -250,8 +250,8 @@ void edit_person(person*);
     person* tmp[pcount]; 
      
     for (int i = 0; i < pcount; i++){
-        tmp[i] = myFavMovieStar;
-        myFavMovieStar++;
+        tmp[i] = head;
+        head = head->next;
     }
     
     person* swapper;
@@ -277,7 +277,7 @@ void edit_person(person*);
    
     //Done printing persons by SSN
     return;
-}*/
+}
 
 void add_person(person* prevPerson){
     
@@ -471,14 +471,14 @@ void edit_person(person* head){
     return;    
 }
 
-/*void old_people(person* head, string fName, int pcount){
+void old_people(person* head, string fName, int pcount){
     
     person* tmp[pcount];
     int old_person_age = 1956;
      
     for (int i = 0; i < pcount; i++){
-        tmp[i] = myFavMovieStar;
-        myFavMovieStar++;
+        tmp[i] = head;
+        head = head->next;
     }
     
     person* swapper;
@@ -494,7 +494,7 @@ void edit_person(person* head){
     }
     //Done sorting persons by SSN 
     cout << endl;
-    cout << setw(51) << "[Here is a collection of boomers]: " << endl;
+    cout << setw(51) << "[Here is a collection of people aged 65 and older]: " << endl;
     cout << "********************************************************************" << endl;
     
     for (int i = 0; i < pcount; i++){
@@ -509,7 +509,7 @@ void edit_person(person* head){
     
     
     
-}*/
+}
 
 void populate_persons(person* head, string fName){ 
     
@@ -644,6 +644,43 @@ void do_sort(person* head){
     
 }
 
+int get_numPersons(string fName){
+    
+    int pcount = 0; 
+    
+    ifstream fMovStar;
+    fMovStar.open(fName);
+    
+    string fLine; 
+    
+    while (!fMovStar.eof()){
+        
+        getline( fMovStar, fLine); 
+        //myFavMovieStar[pcount].pname = fLine;
+        getline( fMovStar, fLine); 
+        //myFavMovieStar[pcount].SSN = stol(fLine);
+        getline( fMovStar, fLine); 
+        //myFavMovieStar[pcount].gender = fLine[0];
+        getline( fMovStar, fLine); 
+        //myFavMovieStar[pcount].DOB = fLine;
+        getline( fMovStar, fLine); 
+        //myFavMovieStar[pcount].height = stof(fLine);
+        getline( fMovStar, fLine); 
+        //myFavMovieStar[pcount].weight = stof(fLine);
+        getline( fMovStar, fLine); 
+        //myFavMovieStar[pcount].fSSN = fLine;
+        getline( fMovStar, fLine); 
+        //myFavMovieStar[pcount].mSSN = fLine;
+        
+        pcount++;
+    }
+    
+    fMovStar.close(); 
+    
+    return pcount;
+    
+}
+
 int show_menu(){
     
     int usrOpt;
@@ -674,6 +711,8 @@ int main(){
     
     person* head = new person;
     
+    int pcount = get_numPersons(fName);
+    
     populate_persons(head, fName);
     
     int usrOpt = 0;
@@ -687,12 +726,12 @@ int main(){
 	if (usrOpt==3)  { add_person(head->next); do_sort(head);}
 	if (usrOpt==4)  { add_bulk(head->next, newfName); do_sort(head);}
 	if (usrOpt==5)  { edit_person(head); do_sort(head);}
-	//if (usrOpt==6)  { old_people(head, fName, pcount);} 
-	//if (usrOpt==7)  { thicc_people(head, pcount);}
-	//if (usrOpt==8)  { boys_and_girls(head, pcount);}
-	//if (usrOpt==9)  { mommy_and_daddy(head, pcount);}
-	//if (usrOpt==10) { child_finder(head, pcount);}
-	//if (usrOpt==11) { sibling_finder(head, pcount);}
+	if (usrOpt==6)  { old_people(head, fName, pcount);} 
+	if (usrOpt==7)  { thicc_people(head, pcount);}
+	if (usrOpt==8)  { males_per_thousand_females(head, pcount);}
+	if (usrOpt==9)  { parent_finder(head, pcount);}
+	if (usrOpt==10) { child_finder(head, pcount);}
+	if (usrOpt==11) { sibling_finder(head, pcount);}
 	if (usrOpt==12) {  }
 	
 	
