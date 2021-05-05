@@ -42,7 +42,13 @@ void males_per_thousand_females(person*, int);
 void parent_finder(person*, int);
 void child_finder(person*, int);
 void sibling_finder(person*, int);
+void generation_finder(person*);
 
+void generation_finder(person* head){                       //Group by generation, oldest first; display by age, oldest first.
+                                                            //(HINT: Find the parents of the person, then find all the siblings of each parent, then find the children of each sibling.)
+    
+
+}
 
 void sibling_finder(person* head, int pcount){
     
@@ -732,7 +738,7 @@ int main(){
 	if (usrOpt==9)  { parent_finder(head, pcount);}
 	if (usrOpt==10) { child_finder(head, pcount);}
 	if (usrOpt==11) { sibling_finder(head, pcount);}
-	if (usrOpt==12) {  }
+	if (usrOpt==12) { generation_finder(head);}
 	
 	
 	
