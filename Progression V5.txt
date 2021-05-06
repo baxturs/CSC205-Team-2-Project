@@ -1,7 +1,7 @@
 /******************************************************************************
 
 Team 2  Final Project  29 April 2021
-Richard Dinsmore
+Final Project by Richard Dinsmore (rad2775), Devon Walker (dcw28756 ), Amonte Edwards (aje2062), Brett Taylor (bt2946)
 
 *******************************************************************************/
 #include <iostream>
