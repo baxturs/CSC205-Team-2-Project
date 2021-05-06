@@ -232,6 +232,8 @@ void child_finder(person* head, int pcount){
 
 void parent_finder(person* head, int pcount){
     
+    cout << endl;
+    
     person* tmp[pcount]; 
      
     for (int i = 0; i < pcount; i++){
@@ -286,6 +288,8 @@ void parent_finder(person* head, int pcount){
 
 void males_per_thousand_females(person* head, int pcount){
     
+    cout << endl;
+    
     person* tmp[pcount]; 
      
     for (int i = 0; i < pcount; i++){
@@ -307,11 +311,11 @@ void males_per_thousand_females(person* head, int pcount){
         }
     }
     
-    cout << "********************************************************************" << endl;
+    cout << "*********************************************************" << endl;
     cout << "Count of males: " << maleCount << endl;
     cout << "Count of females: " << femaleCount << endl;
     cout << "Ratio of females per thousand males: " << ((femaleCount / maleCount) * 1000) << endl;
-    cout << "********************************************************************" << endl;    
+    cout << "*********************************************************" << endl << endl;    
 
     
     return;
@@ -320,7 +324,7 @@ void males_per_thousand_females(person* head, int pcount){
 
 void thicc_people(person* head, int pcount){
     
-    
+    cout << endl;
     int fat = 27;
     //int bodyMassIndex = (tmp[i]->weight / (tmp[i]->height * tmp[i]->height))
     
@@ -343,14 +347,15 @@ void thicc_people(person* head, int pcount){
         }
     }
     //Done sorting persons by SSN 
-    
+    cout << "[Here is a collection of people at high risk of cardiovascular disease]: " << endl;
+    cout << "******************************************************************************************************" << endl;
     for (int i = 0; i < pcount; i++){
         if( ( (tmp[i]->weight / (tmp[i]->height * tmp[i]->height)) * 703) > fat){
                 cout << tmp[i]->pName << " | BMI: " << ((tmp[i]->weight / (tmp[i]->height * tmp[i]->height)) * 703) << " | " << tmp[i]->SSN << " | " << tmp[i]->gender << " | " << tmp[i]->DOB << " | " 
                 << tmp[i]->height << " | " << tmp[i]->weight << " | " << tmp[i]->fSSN << " | "  << tmp[i]->mSSN << " | " <<  endl ; 
         }
     }    
-    cout << endl; 
+    cout << "******************************************************************************************************" << endl << endl;
    
     //Done printing persons by SSN
     return;
@@ -572,7 +577,7 @@ void old_people(person* head, string fName, int pcount){
     //Done sorting persons by SSN 
     cout << endl;
     cout << setw(51) << "[Here is a collection of people aged 65 and older]: " << endl;
-    cout << "********************************************************************" << endl;
+    cout << "**************************************************************************************" << endl;
     
     for (int i = 0; i < pcount; i++){
         if(stoi(tmp[i]->DOB.substr(0,4)) < old_person_age){
@@ -580,7 +585,7 @@ void old_people(person* head, string fName, int pcount){
                     << tmp[i]->height << " | " << tmp[i]->weight << " | " << tmp[i]->fSSN << " | "  << tmp[i]->mSSN << " | " <<  endl ; 
             }
         }    
-    cout << "********************************************************************" << endl;
+    cout << "**************************************************************************************" << endl;
     cout << endl;
     //Done printing persons by SSN
     
