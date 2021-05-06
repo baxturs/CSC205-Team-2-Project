@@ -107,7 +107,7 @@ void sibling_finder(person* head, int pcount){
     
      for(int i = 0; i < pcount; i++){
         for(int j = 1; j < pcount; j++){
-            if(tmp[j]->DOB.substr(0,4) > tmp[j - 1]->DOB.substr(0,4)){
+            if(tmp[j]->DOB.substr(0,4) < tmp[j - 1]->DOB.substr(0,4)){
                 swapper = tmp[j];
                 tmp[j] = tmp[j - 1];
                 tmp[j - 1] = swapper; 
@@ -115,11 +115,6 @@ void sibling_finder(person* head, int pcount){
         }
     }
     //Done sorting persons by SSN 
-     
-    for (int i = 0; i < pcount; i++){
-        tmp[i] = head;
-        head = head->next;
-    }
     
     long userInp;
     long fatherhood = 0;
@@ -178,7 +173,7 @@ void child_finder(person* head, int pcount){
     
      for(int i = 0; i < pcount; i++){
         for(int j = 1; j < pcount; j++){
-            if(tmp[j]->DOB.substr(0,4) > tmp[j - 1]->DOB.substr(0,4)){
+            if(tmp[j]->DOB.substr(0,4) < tmp[j - 1]->DOB.substr(0,4)){
                 swapper = tmp[j];
                 tmp[j] = tmp[j - 1];
                 tmp[j - 1] = swapper; 
@@ -567,7 +562,7 @@ void old_people(person* head, string fName, int pcount){
     
      for(int i = 0; i < pcount; i++){
         for(int j = 1; j < pcount; j++){
-            if(tmp[j]->DOB.substr(0,4) > tmp[j - 1]->DOB.substr(0,4)){
+            if(tmp[j]->DOB.substr(0,4) < tmp[j - 1]->DOB.substr(0,4)){
                 swapper = tmp[j];
                 tmp[j] = tmp[j - 1];
                 tmp[j - 1] = swapper; 
