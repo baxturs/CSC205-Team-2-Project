@@ -206,7 +206,7 @@ void child_finder(person* head, int pcount){
             if(tmp[i]->mSSN == personhood){
                child_of_mother = tmp[i]->pName;
                child1 = true;
-               cout << tmp[i]->pName << " is a child of " << personName << endl;
+               cout << tmp[i]->pName << " is a child of " << personName << " | " << "DOB: " << tmp[i]->DOB << endl;
             }
         }
         
@@ -216,7 +216,7 @@ void child_finder(person* head, int pcount){
             if(tmp[i]->fSSN == personhood){
                child_of_father = tmp[i]->pName;
                child2 = true;
-               cout << tmp[i]->pName << " is a child of " << personName << endl;
+               cout << tmp[i]->pName << " is a child of " << personName << " | " << "DOB: " << tmp[i]->DOB << endl;
             }
         }
     
