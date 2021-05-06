@@ -53,13 +53,35 @@ void generation_finder(person* head, int pcount){  //Group by generation, oldest
         head = head->next;
     }
     
+    person* swapper;
+    
+     for(int i = 0; i < pcount; i++){
+        for(int j = 1; j < pcount; j++){
+            if(tmp[j]->DOB.substr(0,4) < tmp[j - 1]->DOB.substr(0,4)){
+                swapper = tmp[j];
+                tmp[j] = tmp[j - 1];
+                tmp[j - 1] = swapper; 
+            }
+        }
+    }
+    //Done sorting persons by SSN
+    
     long userInp;
+    string personName;
+    long personhood;
     long fatherhood = 0;
     long motherhood = 0;
     
     cout << "Enter a SSN to search for in the list: ";
     cin >> userInp;
-
+    
+    for(int i = 0; i < pcount; i++){
+        if(tmp[i]->SSN == userInp){
+            personhood = tmp[i]->SSN;
+            personName = tmp[i]->pName;
+            }
+        }
+    
     for(int i = 0; i < pcount; i++){
         if(tmp[i]->SSN == userInp){
             fatherhood = tmp[i]->fSSN;
@@ -68,24 +90,36 @@ void generation_finder(person* head, int pcount){  //Group by generation, oldest
     
     for(int i = 0; i < pcount; i++){
         if(tmp[i]->SSN == userInp){
-            motherhood = tmp[i]->mSSN;
+            motherhood = tmp[i]->mSSN; 
         }
     }
     
     for(int i = 0; i < pcount; i++){
-        if(tmp[i]->fSSN = fatherhood){
-            cout << "Paternal sibling: " << tmp[i]->SSN << endl;
+        if(tmp[i]->SSN == motherhood){
+            tmp[i]->pName = tmp[i]->SSN;
+            //cout << tmp[i]->pName << " is the mother of " << personName << endl;
         }
     }
     
     for(int i = 0; i < pcount; i++){
-        if(tmp[i]->mSSN = motherhood){
-            cout << "Maternal sibling: " << tmp[i]->SSN << endl;
+        if(tmp[i]->SSN == fatherhood){
+            tmp[i]->pName = tmp[i]->SSN;
+            //cout << tmp[i]->pName << " is the father of " << personName << endl;
         }
     }
     
-    if(fatherhood == 0 && motherhood == 0){
-        cout << "No siblings found. Try again." << endl;
+    for(int i = 0; i < pcount; i++){
+        if(tmp[i]->mSSN == motherhood){
+            tmp[i]->pName = tmp[i]->mSSN;
+            //cout << tmp[i]->pName << " is the aunt of " << personName << endl;
+        }
+    }
+    
+    for(int i = 0; i < pcount; i++){
+        if(tmp[i]->fSSN == fatherhood){
+            tmp[i]->pName = tmp[i]->fSSN;
+            //cout << tmp[i]->pName << " is the uncle of " << personName << endl;
+        }
     }
     
     cout << endl; 
@@ -139,13 +173,13 @@ void sibling_finder(person* head, int pcount){
     
         for(int i = 0; i < pcount; i++){
             if(tmp[i]->mSSN == motherhood){
-               cout << "Maternal sibling: "<< tmp[i]->pName << " | " << "Age: " << (2021 - stoi(tmp[i]->DOB)) <<  endl;
+               cout << "Maternal sibling: "<< tmp[i]->pName << " | " << "DOB: " << tmp[i]->DOB <<  endl;
             }
         }
     
         for(int i = 0; i < pcount; i++){
             if(tmp[i]->fSSN == fatherhood){
-               cout << "Paternal sibling: "<< tmp[i]->pName << " | " << "Age: " << (2021 - stoi(tmp[i]->DOB)) <<  endl;
+               cout << "Paternal sibling: "<< tmp[i]->pName << " | " << "DOB: " << tmp[i]->DOB <<  endl;
             }
         }
     
@@ -206,7 +240,7 @@ void child_finder(person* head, int pcount){
             if(tmp[i]->mSSN == personhood){
                child_of_mother = tmp[i]->pName;
                child1 = true;
-               cout << tmp[i]->pName << " is a child of " << personName << " | "  << "Age: " <<(2021 - stoi(tmp[i]->DOB)) << " | " << endl;
+               cout << tmp[i]->pName << " is a child of " << personName << " | " << "DOB: " << tmp[i]->DOB << endl;
             }
         }
         
@@ -216,7 +250,7 @@ void child_finder(person* head, int pcount){
             if(tmp[i]->fSSN == personhood){
                child_of_father = tmp[i]->pName;
                child2 = true;
-               cout << tmp[i]->pName << " is a child of " << personName << " | "  << "Age: " <<(2021 - stoi(tmp[i]->DOB)) << " | " << endl;
+               cout << tmp[i]->pName << " is a child of " << personName << " | " << "DOB: " << tmp[i]->DOB << endl;
             }
         }
     
@@ -351,7 +385,8 @@ void thicc_people(person* head, int pcount){
     cout << "******************************************************************************************************" << endl;
     for (int i = 0; i < pcount; i++){
         if( ( (tmp[i]->weight / (tmp[i]->height * tmp[i]->height)) * 703) > fat){
-                cout << tmp[i]->pName << " | BMI: " << ((tmp[i]->weight / (tmp[i]->height * tmp[i]->height)) * 703) <<  endl ; 
+                cout << tmp[i]->pName << " | BMI: " << ((tmp[i]->weight / (tmp[i]->height * tmp[i]->height)) * 703) << " | " << tmp[i]->SSN << " | " << tmp[i]->gender << " | " << tmp[i]->DOB << " | " 
+                << tmp[i]->height << " | " << tmp[i]->weight << " | " << tmp[i]->fSSN << " | "  << tmp[i]->mSSN << " | " <<  endl ; 
         }
     }    
     cout << "******************************************************************************************************" << endl << endl;
@@ -518,17 +553,33 @@ void edit_person(person* head){
     cin >> userInp;
     
     while (current != NULL){
-        if(current->SSN == userInp){
+        while(current->SSN == userInp){
+            
             /* 2. put in the data */
             cout << "Please enter a new person's name: " << endl;
             getline(cin >> ws, userpName);
                 current->pName = userpName;
+            cout << "Please enter a new person's SSN: " << endl;
+            cin >> userSSN;
+                current->SSN = userSSN;
+            cout << "Please enter a new person's gender: " << endl;
+            cin >> userGender;
+                current->gender = userGender;
+            cout << "Please enter a new person's DOB (yyyy/mm/dd): " << endl;
+            cin >> userDOB;
+                current->DOB = userDOB;
             cout << "Please enter a new person's height (in inches): " << endl;
             cin >> userHeight;
                 current->height = userHeight;
             cout << "Please enter a new person's weight (in pounds): " << endl;
             cin >> userWeight;
                 current->weight = userWeight;
+            cout << "Please enter a new person's father's SSN: " << endl;
+            cin >> userfSSN;
+                current->fSSN = userfSSN;
+            cout << "Please enter a new person's mother's SSN: " << endl;
+            cin >> usermSSN;
+                current->mSSN = usermSSN;
         }
         current = current->next;
     }
@@ -560,14 +611,15 @@ void old_people(person* head, string fName, int pcount){
     //Done sorting persons by SSN 
     cout << endl;
     cout << setw(51) << "[Here is a collection of people aged 65 and older]: " << endl;
-    cout << "***************************************************" << endl;
+    cout << "**************************************************************************************" << endl;
     
     for (int i = 0; i < pcount; i++){
         if(stoi(tmp[i]->DOB.substr(0,4)) < old_person_age){
-                cout << tmp[i]->pName << " | " << tmp[i]->SSN << " | " << "Age: " <<(2021 - stoi(tmp[i]->DOB)) << " | " <<  endl ; 
+                cout << tmp[i]->pName << " | " << tmp[i]->SSN << " | " << tmp[i]->gender << " | " << tmp[i]->DOB << " | " 
+                    << tmp[i]->height << " | " << tmp[i]->weight << " | " << tmp[i]->fSSN << " | "  << tmp[i]->mSSN << " | " <<  endl ; 
             }
         }    
-    cout << "****************************************************" << endl;
+    cout << "**************************************************************************************" << endl;
     cout << endl;
     //Done printing persons by SSN
     
