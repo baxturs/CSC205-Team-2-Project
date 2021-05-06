@@ -206,7 +206,7 @@ void child_finder(person* head, int pcount){
             if(tmp[i]->mSSN == personhood){
                child_of_mother = tmp[i]->pName;
                child1 = true;
-               cout << tmp[i]->pName << " is a child of " << personName << " | " << "DOB: " << tmp[i]->DOB << endl;
+               cout << tmp[i]->pName << " is a child of " << personName << endl;
             }
         }
         
@@ -216,7 +216,7 @@ void child_finder(person* head, int pcount){
             if(tmp[i]->fSSN == personhood){
                child_of_father = tmp[i]->pName;
                child2 = true;
-               cout << tmp[i]->pName << " is a child of " << personName << " | " << "DOB: " << tmp[i]->DOB << endl;
+               cout << tmp[i]->pName << " is a child of " << personName << endl;
             }
         }
     
@@ -519,33 +519,17 @@ void edit_person(person* head){
     cin >> userInp;
     
     while (current != NULL){
-        while(current->SSN == userInp){
-            
+        if(current->SSN == userInp){
             /* 2. put in the data */
             cout << "Please enter a new person's name: " << endl;
             getline(cin >> ws, userpName);
                 current->pName = userpName;
-            cout << "Please enter a new person's SSN: " << endl;
-            cin >> userSSN;
-                current->SSN = userSSN;
-            cout << "Please enter a new person's gender: " << endl;
-            cin >> userGender;
-                current->gender = userGender;
-            cout << "Please enter a new person's DOB (yyyy/mm/dd): " << endl;
-            cin >> userDOB;
-                current->DOB = userDOB;
             cout << "Please enter a new person's height (in inches): " << endl;
             cin >> userHeight;
                 current->height = userHeight;
             cout << "Please enter a new person's weight (in pounds): " << endl;
             cin >> userWeight;
                 current->weight = userWeight;
-            cout << "Please enter a new person's father's SSN: " << endl;
-            cin >> userfSSN;
-                current->fSSN = userfSSN;
-            cout << "Please enter a new person's mother's SSN: " << endl;
-            cin >> usermSSN;
-                current->mSSN = usermSSN;
         }
         current = current->next;
     }
