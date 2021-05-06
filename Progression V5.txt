@@ -96,7 +96,6 @@ void generation_finder(person* head, int pcount){  //Group by generation, oldest
 void sibling_finder(person* head, int pcount){
     
     person* tmp[pcount];
-    int old_person_age = 1956;
      
     for (int i = 0; i < pcount; i++){
         tmp[i] = head;
@@ -115,7 +114,8 @@ void sibling_finder(person* head, int pcount){
         }
     }
     //Done sorting persons by SSN 
-    
+     
+
     long userInp;
     long fatherhood = 0;
     long motherhood = 0;
@@ -139,13 +139,13 @@ void sibling_finder(person* head, int pcount){
     
         for(int i = 0; i < pcount; i++){
             if(tmp[i]->mSSN == motherhood){
-               cout << "Maternal sibling: "<< tmp[i]->pName <<  endl;
+               cout << "Maternal sibling: "<< tmp[i]->pName << " | " << "DOB: " << tmp[i]->DOB <<  endl;
             }
         }
     
         for(int i = 0; i < pcount; i++){
             if(tmp[i]->fSSN == fatherhood){
-               cout << "Paternal sibling: "<< tmp[i]->pName <<  endl;
+               cout << "Paternal sibling: "<< tmp[i]->pName << " | " << "DOB: " << tmp[i]->DOB <<  endl;
             }
         }
     
@@ -261,7 +261,7 @@ void parent_finder(person* head, int pcount){
     
         for(int i = 0; i < pcount; i++){
             if(tmp[i]->SSN == motherhood){
-               cout << "Mother: "<< tmp[i]->pName <<  endl;
+               cout << "Mother: "<< tmp[i]->pName << " | " << "DOB: " << tmp[i]->DOB <<  endl;
             }
         }
         
@@ -271,7 +271,7 @@ void parent_finder(person* head, int pcount){
     
         for(int i = 0; i < pcount; i++){
             if(tmp[i]->SSN == fatherhood){
-               cout << "Father: "<< tmp[i]->pName <<  endl;
+               cout << "Father: "<< tmp[i]->pName << " | " << "DOB: " << tmp[i]->DOB <<  endl;
             }
         }
     
